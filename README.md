@@ -341,3 +341,105 @@ console.log(iterator.next())
 3. Symbol.isConcatSpreadable 
 
 `Symbol.isConcatSpreadable` 设置为 false，数组调用 `concat` 方法连接两个数组时，对具有`Symbol.isConcatSpreadable` 值为 false 的数组不进行扁平化。
+
+## 类
+
+### ES5 基于原型的类
+```js
+// ES5 的类
+function Point (x, y) {
+  this.x = x
+  this.y = y
+}
+// 原型方法
+Point.prototype.getPosition = function () {
+  return `(${this.x},${this.y})`;
+}
+let p1 = new Point(1, 2)
+console.log(p1)
+console.log(p1.getPosition())
+```
+重写原型实现继承。
+
+### ES6 的类
+```js
+class Point {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+  }
+  getPosition () {
+    return `(${this.x},${this.y})`
+  }
+}
+let p1 = new Point(2, 3)
+console.log(p1)
+console.log(p1.getPosition())
+console.log(p1 instanceof Point)
+console.log(p1.hasOwnProperty('x'))
+console.log(p1.hasOwnProperty('getPosition'))
+console.log(p1.__proto__.hasOwnProperty('getPosition'))
+```
+class 关键字定义的类，不通过 new 调用，会报错。
+
+```js
+let info = {
+  _age: 18,
+  // 存值函数
+  set age (age) {
+    if (age > 18) console.log('怎么老了')
+    else console.log('我还年轻')
+  },
+  // 取值函数
+  get age () {
+    console.log('获取年纪')
+    return this._age
+
+  }
+}
+console.log(info._age)
+console.log(info.age)
+info.age = 20
+info.age = 17
+```
+静态方法，类直接调用的方法，实例不可调用，因为实例不继承静态方法。在类中使用关键字 `static` 声明的方法为静态方法。
+静态属性，ES6 目前不支持静态属性，有办法写静态属性，但是不推荐。
+
+`mew.target` 检查函数或者构造函数是否通过`new`运算符调用的，`new.target`指向一个构造方法和函数的引用。通过 class 关键字定义的类，不通过new调用，会报错。
+
+### ES6 的继承
+
+ES6 中使用 关键字 `extends` 实现继承，在子类中调用`super`传递父类的参数。
+```js
+class Parent {
+  constructor(name) {
+    this.name = name
+  }
+  static hello () {
+    console.log('Hello World')
+  }
+  getName () {
+    return this.name
+  }
+}
+class Child extends Parent {
+  constructor(name, age) {
+    super(name)//必须先调用 super 传递父类的参数
+    this.age = age
+  }
+}
+const jack = new Child('jack', 23)
+console.log(jack.getName())
+// 报错
+//console.log(jack.hello())//子类实例不能调用父类静态方法
+console.log(Child.hello())//子类可调用父类静态方法
+console.log(jack instanceof Child)//true
+console.log(jack instanceof Parent)//true
+```
+super 函数，该函数指向父类的构造函数。
+super 作为对象
+1. 在普通方法中，指向父类的原型
+2. 在静态方法，指向父类
+
+### 类的继承
+## 接口
