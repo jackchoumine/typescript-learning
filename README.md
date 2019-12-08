@@ -263,3 +263,81 @@ function printInfo(person: { name: string, age: number, scores: number[] }): { n
  
 ⑨ Promise 作为返回值
 
+## symbol 类型
+
+### symbol 的使用
+
+symbol 表示唯一的值，可传入字符串、数值、undefined作为标识。
+```js
+const s1 = Symbol()
+const s2 = Symbol('jack')
+const s3 = Symbol('jack')
+// s2 和 s3 是两个不同的变量
+```
+严格模式下，对象不能包含同名属性，否则前面的属性被后面的属性覆盖。
+```js
+{name:'jack',name:'小明'}
+```
+将 symbol 变量作为属性名，可解决此问题。
+```js
+const name = Symbol('name')
+test obj = {[name]:'jack',name:'小明'}//变量作为属性名，必须使用 []
+```
+### symbol 属性遍历
+
+1. symbol 属性在 for-in 中遍历不到
+
+```js
+for(const key in obj){
+  console.log(key)// name
+}
+```
+2. Object.keys 拿不到 symbol 属性
+3. Object.getOwnPropertyNames 获取不到 symbol 属性
+4. Reflect.ownKeys 可获取到 symbol 属性
+5. JSON.stringify 不能转化 symbol 属性
+
+### Symbol 的方法
+
+`Symbol.for` 创建 symbol 变量时，会去寻找该标识符的symbol 是否已存在，存在则使用存在的，否则新建。
+
+`Symbol.keyFor`，获取 Symbol.for 创建的symbol的标识符。
+
+```js
+const s8 = Symbol('jack')
+const s9 = Symbol.for('jack')
+const s10 = Symbol.for('jack')
+console.log(s8 === s9)//false
+console.log(s10 === s9)//true 
+console.log(Symbol.keyFor(s10))//jack
+console.log(Symbol.keyFor(s8))//undefined
+```
+
+### symbole 的属性
+
+1. Symbol.hasInstance
+一个对象拥有 `Symbol.hasInstance` 函数，使用 `instanceof `判断类型时，会调用该函数。
+
+```js
+const inObj = {
+  [Symbol.hasInstance](obj: object) {
+    console.log('Symbol.hasInstance')
+    console.log(obj)
+  }
+}
+const jack = { name: 'jack' }
+console.log(jack instanceof <any>inObj)
+```
+2. iterator 遍历器
+
+可给一个数组增加遍历器，数组就具有遍历器方法。
+```js
+const testArry = [1, 2, 3]
+// 返回一个遍历器
+const iterator = testArry[Symbol.iterator]()
+console.log(iterator)
+console.log(iterator.next())
+```
+3. Symbol.isConcatSpreadable 
+
+`Symbol.isConcatSpreadable` 设置为 false，数组调用 `concat` 方法连接两个数组时，对具有`Symbol.isConcatSpreadable` 值为 false 的数组不进行扁平化。
