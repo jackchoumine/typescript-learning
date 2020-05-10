@@ -2,7 +2,7 @@
  * @Description: ts 函数学习
  * @Date: 2020-05-10 22:09:30
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-11 00:51:46
+ * @LastEditTime: Mon May 11 2020 02:28:36
  * @LastEditors: JackChouMine
  */
 // 定义了一个函数并使用内联方式对参数进行了注解
@@ -24,3 +24,21 @@ let compute: (x: number, y: number) => number
 // 使用一个函数初始化变量
 compute = (a, b) => a + b
 console.log(compute(12, 12))
+type Compute = (x: number, y: number) => number
+let compute1: Compute = (n, m) => n + m
+compute1(12, 40)
+
+interface Lib {
+  (): void;
+  version: string;
+  doSomething(): void
+}
+const getLib = () => {
+  const lib: Lib = (() => { }) as Lib
+  lib.version = '1.1.0'
+  lib.doSomething = () => { }
+  return lib
+}
+const lib = getLib()
+console.log(lib())
+console.log(lib.doSomething())
