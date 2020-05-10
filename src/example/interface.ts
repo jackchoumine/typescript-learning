@@ -1,4 +1,19 @@
 
+/*
+ * @Description: ts 函数学习
+ * @Date: 2020-05-10 22:09:30
+ * @Author: JackChouMine
+ * @LastEditTime: Mon May 11 2020 02:05:34
+ * @LastEditors: JackChouMine
+ */
+/*
+接口可用来约束类、函数、对象的结构和类型，是一种代码协作契约。
+js 中访问一个对象的属性，可能属性不存在，可能属性值为假值
+if(obj.a){ // 是判断是否存在对象属性呢还是属性为假值
+
+}
+//当使用接口约定对象结构时，这种困惑不存在。
+ */
 const getFullName = ({ firstName, lastName }: { firstName: string, lastName: string }): string => {
   return `${firstName} ${lastName}`
 }
