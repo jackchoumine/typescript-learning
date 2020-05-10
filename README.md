@@ -16,7 +16,7 @@ let name:string = 'jack'
 let city:string = `chengdu` // 模板字符串
 let go:boolean = true
 ```
-> `new Boolean(false) `返回一个对象，Boolean(1) 是一个布尔类型，其他基本的构造函数类型。
+> `new Boolean(false) `返回一个对象，Boolean(1) 是一个布尔类型，其他基本的构造函数类型也是如此。
 
 null 和 undefined：
 ```js
@@ -442,4 +442,6 @@ super 作为对象
 2. 在静态方法，指向父类
 
 ### 类的继承
+
 ## 接口
+
