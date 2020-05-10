@@ -15,9 +15,9 @@
       "never-prefix"
     ],
     "no-console": false,
-    "eofline": true,
     "trailing-comma": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": true
   },
   "rulesDirectory": []
 }

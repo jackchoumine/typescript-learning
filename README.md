@@ -8,8 +8,8 @@ tsc --init # 生成 ts 配置文件
 ```
 ## 基本类型
 1. js 中基本类型在ts中的声明
-
-声明方式 `variableName:type`
+类型注解：相当于强类型语言中的类型声明。
+注解方式 `variableName:type`
 ```ts
 let age:number = 20
 let name:string = 'jack'
@@ -32,7 +32,7 @@ let num: void = null;
 let u: void = undefined;
 let num1: number = u;
 ```
-空值 void，用来表示无返回值的函数,void 变量只能赋值 `undefined`，不能被赋值给其他类型。
+空值 void，用来表示无返回值的函数,void 变量只能赋值 `undefined`，不能被赋值给其他类型。void 是一个操作符，获取undefined。
 ```js
 let test:void = undefined
 // 报错
@@ -94,7 +94,7 @@ let testObj2: object = { name: 'jack' }
 let testObj3: { name: string } = { name: 'jack' }
 ```
 3. 枚举 
-ts 中的枚举和定义对象类似, 使用`enum`声明。
+ts 中的枚举和定义对象类似, 使用`enum`声明，是常量的集合。
 ```js
 enum CardSuit {
   car,
@@ -444,4 +444,5 @@ super 作为对象
 ### 类的继承
 
 ## 接口
+
 

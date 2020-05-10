@@ -1,3 +1,10 @@
+/*
+ * @Description: ts 类型
+ * @Date: 2019-12-07 21:52:05
+ * @Author: JackChouMine
+ * @LastEditTime: 2020-05-11 00:42:36
+ * @LastEditors: JackChouMine
+ */
 let age: number = 123
 console.log(age)
 // 元组
@@ -13,7 +20,7 @@ const consoleText = (text: string): void => {
   console.log(text)
 }
 consoleText('你好')
-let v: void = undefined
+let v: void
 console.log(typeof v);
 
 // v = null
@@ -23,11 +30,11 @@ enum CardSuit {
   heart,
   diamonds = 1
 }
-//console.log(CardSuit['card']) // 报错，但是运行不报错
+// console.log(CardSuit['card']) // 报错，但是运行不报错
 console.log(CardSuit.car) // card
-console.log(CardSuit.club)// 10 
+console.log(CardSuit.club)// 10
 console.log(CardSuit.heart)// 11
-console.log(CardSuit[1]) //diamonds
+console.log(CardSuit[1]) // diamonds
 type enumCard = typeof CardSuit
 function testFun(enumValue: 'jack' | 'tom'): any {
   return enumValue
@@ -44,9 +51,9 @@ console.log(printInfo({ name: 'jack', age: 23, scores: [1, 2, 3] }))
 let test: string | number
 test = 14
 test = '24'
-// null undefined 
+// null undefined
 let un: null = null
-let undef: undefined = undefined
+let undef: undefined
 // never 不存在的类型 任意类型的子类型
 const errorFun = (message: string): never => {
   throw new Error(message)
@@ -64,17 +71,17 @@ function sum(first: number = 0, ...rest: number[]): number {
   return rest.reduce((total, current) => total + current) + first
 }
 console.log('********************');
-console.log(sum(undefined, 2, 3, 4, 5, 6))//21
-// object 
+console.log(sum(undefined, 2, 3, 4, 5, 6))// 21
+// object
 const consoleObj = (arg: object): void => {
   console.log(arg)
 }
 consoleObj({ name: 'jack' })
-// 类型断言 
+// 类型断言
 // refers to a value but it is being as a value here  typescript
 const getLength: (target: string | number) => number = (target: string | number): number => {
-  if ((<string>target).length || (target as string).length) {
-    return (<string>target).length
+  if ((target as string).length || (target as string).length) {
+    return (target as string).length
   } else {
     return target.toString().length
   }
