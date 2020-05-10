@@ -2,7 +2,7 @@
  * @Description: ts 函数学习
  * @Date: 2020-05-10 22:09:30
  * @Author: JackChouMine
- * @LastEditTime: Mon May 11 2020 02:28:36
+ * @LastEditTime: Mon May 11 2020 03:01:32
  * @LastEditors: JackChouMine
  */
 // 定义了一个函数并使用内联方式对参数进行了注解
@@ -42,3 +42,27 @@ const getLib = () => {
 const lib = getLib()
 console.log(lib())
 console.log(lib.doSomething())
+
+const add2 = (a: number, b?: number) => {
+  return b ? a + b : a = 1
+}
+const add3 = (a: number, b = 100) => a + b
+const add4 = (a: number, ...rest: number[]): number => {
+  return a + rest.reduce((pre, cur) => pre + cur)
+}
+
+function add5(...rest: number[]): number
+function add5(...rest: string[]): string
+function add5(...rest: any[]) {
+  const [first] = rest
+  if (typeof first === 'string') {
+    return rest.join('')
+  }
+  if (typeof first === 'number') {
+    return rest.reduce((pre, cur) => pre + cur)
+  }
+}
+
+console.log(add5(1, 2, 4, 5))
+console.log(add5('1', 'b', 'c'))
+// console.log(add5('1', 'b', 2))// 参数严格符合声明，报错
