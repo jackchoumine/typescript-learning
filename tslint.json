@@ -5,10 +5,16 @@
   ],
   "jsRules": {},
   "rules": {
-    "quotemark": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
     "semicolon": [
-      false,
-      "never"
+      true,
+      "always",
+      "ignore-bound-class-methods",
+      "ignore-interfaces"
     ],
     "interface-name": [
       true,
@@ -19,7 +25,13 @@
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": true,
     "no-empty": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "rules": {
+      "one-variable-per-declaration": [
+        true,
+        "ignore-for-loop"
+      ]
+    }
   },
   "rulesDirectory": []
 }
