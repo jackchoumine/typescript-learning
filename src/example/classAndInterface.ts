@@ -2,7 +2,7 @@
  * @Description: 类与接口
  * @Date: 2020-05-14 22:39:18
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-14 23:13:06
+ * @LastEditTime: 2020-05-21 01:00:58
  * @LastEditors: JackChouMine
  */
 
@@ -26,13 +26,14 @@ class Asian implements Human {
 }
 
 // 接口继承
-// 接口像类一样，可相互继承，几个接口可继承多个接口
+// 接口像类一样，可相互继承，一个接口可继承多个接口
 interface Man extends Human {
   run(): void
 }
 interface Child {
   cry(): void
 }
+// 一个接口继承多接口,父级接口使用逗号分开
 interface Boy extends Child, Man { }
 
 const boy: Boy = {
@@ -48,7 +49,7 @@ class Auto {
   public state = 1;
 }
 
-// 接口继承类，会把类的成员抽象出来,公有成员、受保护成员、私有成员
+// 接口继承类，会把类的成员抽象出来，公有成员、受保护成员、私有成员
 // tslint:disable-next-line: no-empty-interface
 interface AutoInterface extends Auto { }
 
@@ -60,5 +61,5 @@ class C implements AutoInterface {
 // Auto 的子类实现 AutoInterface 接口
 // tslint:disable-next-line: max-classes-per-file
 class Bus extends Auto implements AutoInterface {
-
+  // Bus 继承了 Auto ，不用声明 state
 }
