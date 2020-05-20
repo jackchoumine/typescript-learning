@@ -5,6 +5,7 @@
   ],
   "jsRules": {},
   "rules": {
+    "callable-types": false,
     "quotemark": [
       true,
       "single",
