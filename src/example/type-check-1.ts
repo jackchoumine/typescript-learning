@@ -2,7 +2,7 @@
  * @Description: 类型检查机制
  * @Date: 2020-05-21 23:08:08
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 23:36:01
+ * @LastEditTime: 2020-05-23 15:37:27
  * @LastEditors: JackChouMine
  */
 // 什么是类型检查机制：
@@ -43,4 +43,4 @@ interface Foo {
   bar: number;
 }
 // const bar: Foo = {};// 使用接口约定对象结构，会提示没有声明 bar 属性
-const bar = {} as Foo; // 使用类型断言，但是不会提示没有声明 bar 属性，辅助信息丢失，因此，不要滥用类型断言，因为这样可能引发类型错误
+const bar = {} as Foo; // 使用类型断言，但是不会提示没有声明 bar 属性，辅助信息丢失，因此，不要滥用类型断言。没有对代码上下文有充足的了解，这样可能引发类型错误。
