@@ -2,7 +2,7 @@
  * @Description: 枚举类型
  * @Date: 2020-05-11 01:06:32
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-11 01:47:29
+ * @LastEditTime: 2020-05-23 18:31:35
  * @LastEditors: JackChouMine
  */
 /*
@@ -20,9 +20,9 @@ enum Role {
   Owner,
   Guest
 }
-console.log(Role.Reporter)
-console.log(Role.Developer)
-console.log(Role[2])
+console.log(Role.Reporter);
+console.log(Role.Developer);
+console.log(Role[2]);
 // 反向映射：枚举成员可作为key,值可以作为key访问成员
 /*
   (function (Role) {
@@ -67,7 +67,7 @@ const enum Month {
   Feb,
   Mar
 }
-const months = [Month.Jan, Month.Feb, Month.Mar]
+const months = [Month.Jan, Month.Feb, Month.Mar];
 
 // 以上代码被编译成
 // const months = [1 /* Jan */, 2 /* Feb */, 3 /* Mar */]
@@ -83,19 +83,19 @@ enum F {
   b = 3
 }
 // 声明一个枚举类型的值，并赋值，赋的值可超出枚举成员
-const e: E = 3
-const f: F = 3
+const e: E = 3;
+const f: F = 3;
 // e === f//不同类型的枚举不可进行比较
-const e1: E.a = 1// 枚举成员作为类型
-const e2: E.b = 1
-let e3: E.a = 3
+const e1: E.a = 1; // 枚举成员作为类型
+const e2: E.b = 1;
+let e3: E.a = 3;
 // e1 === e2 // 不同枚举成员类型不可比较
-console.log(e1 === e3)// 相同枚举成员声明的变量，是可比较的
+console.log(e1 === e3); // 相同枚举成员声明的变量，是可比较的
 
 // 使用字符串枚举
 enum H {
   a = 'apple',
   b = 'banana'
 }
-const h1: H = H.a // 字符串枚举变量的值只能是枚举成员
-const h2: H.b = H.b
+const h1: H = H.a; // 字符串枚举变量的值只能是枚举成员
+const h2: H.b = H.b;
