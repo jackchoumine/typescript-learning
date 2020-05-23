@@ -14,8 +14,7 @@
     "semicolon": [
       true,
       "always",
-      "ignore-bound-class-methods",
-      "ignore-interfaces"
+      "ignore-bound-class-methods"
     ],
     "interface-name": [
       true,
@@ -32,7 +31,9 @@
         true,
         "ignore-for-loop"
       ]
-    }
+    },
+    "max-classes-per-file": false,
+    "no-empty-interface": false
   },
   "rulesDirectory": []
 }
