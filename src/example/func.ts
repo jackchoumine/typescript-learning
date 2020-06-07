@@ -2,7 +2,7 @@
  * @Description: ts 函数学习
  * @Date: 2020-05-10 22:09:30
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 00:34:16
+ * @LastEditTime: 2020-06-08 00:43:20
  * @LastEditors: JackChouMine
  */
 // 定义了一个函数并使用内联方式对参数进行了注解
@@ -31,7 +31,7 @@ compute1(12, 40);
 interface Lib {
   (): void;
   version: string;
-  doSomething(): void
+  doSomething(): void;
 }
 const getLib = () => {
   const lib: Lib = (() => { }) as Lib;

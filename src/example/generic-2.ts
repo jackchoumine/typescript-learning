@@ -23,7 +23,7 @@
 // 类型约束：约束泛型的类型，比如我们希望参数都有一个length属性
 
 interface Length {
-  length: number
+  length: number;
 }
 function hisLog<T extends Length>(value: T): T {
   console.log(value, value.length);

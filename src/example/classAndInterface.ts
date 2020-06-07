@@ -2,15 +2,15 @@
  * @Description: 类与接口
  * @Date: 2020-05-14 22:39:18
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 01:00:58
+ * @LastEditTime: 2020-06-08 00:43:02
  * @LastEditors: JackChouMine
  */
 
 // 接口把类成员都抽象了出来，只有类的接口而无实现
 interface Human {
   // new(name: string) // 试图约束类的构造函数，在类实现接口时会报错
-  name: string
-  eat(): void
+  name: string;
+  eat(): void;
 }
 
 // 使用类实现接口
@@ -28,10 +28,10 @@ class Asian implements Human {
 // 接口继承
 // 接口像类一样，可相互继承，一个接口可继承多个接口
 interface Man extends Human {
-  run(): void
+  run(): void;
 }
 interface Child {
-  cry(): void
+  cry(): void;
 }
 // 一个接口继承多接口,父级接口使用逗号分开
 interface Boy extends Child, Man { }

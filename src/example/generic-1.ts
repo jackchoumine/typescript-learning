@@ -2,7 +2,7 @@
  * @Description: 泛型函数和泛型接口
  * @Date: 2020-05-21 01:02:56
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 01:49:26
+ * @LastEditTime: 2020-06-08 00:43:27
  * @LastEditors: JackChouMine
  */
 // 1. 泛型的概念
@@ -60,13 +60,13 @@ myOut<number>(3);
 // 3.泛型接口
 // tslint 规则中使用 "callable-types": false, 使用接口定义函数类型不转为类型别名
 interface Log {
-  <T>(value: T): T
+  <T>(value: T): T;
 }
 
 // 泛型还可以约束其他成员，在接口名称后面使用<>声明泛型，在实现时必须指定具体的类型
 // 还可以给泛型指定一个默认的具体类型，实现时不指定具体类型就使用默认类型
 interface In<T = string> {
-  (value: T): T
+  (value: T): T;
 }
 const myInt: In<number> = myOut;
 
