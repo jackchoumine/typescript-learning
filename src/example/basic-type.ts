@@ -2,7 +2,7 @@
  * @Description: ts 类型
  * @Date: 2019-12-07 21:52:05
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-11 00:42:36
+ * @LastEditTime: 2020-12-06 19:56:29 +0800
  * @LastEditors: JackChouMine
  */
 let age = 123
@@ -88,3 +88,7 @@ const getLength: (target: string | number) => number = (target: string | number)
 }
 console.log(getLength('JACK'))
 console.log(getLength(123))
+const tuple3: [string, number] = ['jack', 23]
+const tuple2: [string, number][] = [['jack', 23]]
+console.log(typeof tuple3)
+const test3: void = null

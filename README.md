@@ -21,7 +21,15 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-## 基本类型
+## 数据类型
+
+JS 中的数据类型：
+基础类型：string、number、boolean、symbol、undefined、null
+引用类型：object
+
+ts 对这些数据类型进行了扩展，具有枚举、void、any 等类型。
+
+### 基本类型
 
 1. js 中基本类型在 ts 中的声明
    类型注解：相当于强类型语言中的类型声明。
@@ -44,17 +52,17 @@ let u: undefined = undefined
 ```
 
 null 类型的值 只有 `null`，undefined 类型的值只有 `undefined`。
-~~`null`和`undefined`是所有类型的子类型，即可将两者的值赋给其他类型。~~
+`null`和`undefined`是所有类型的子类型，即可将两者的值赋给其他类型。
+
+> 可配置 tsconfig 规则避免这种情况。
 
 ```js
-// 报错
-let num: void = null
-// 也报错
-let u: void = undefined
-let num1: number = u
+"strictNullChecks": false
 ```
 
-空值 void，用来表示无返回值的函数,void 变量只能赋值 `undefined`，不能被赋值给其他类型。void 是一个操作符，获取 undefined。
+空值 void，用来表示无返回值的函数，void 变量只能赋值 `undefined` 和 `null`，不能被赋值给其他类型。void 是一个操作符，获取 undefined。
+
+> void 的真正作用是指定函数的返回值。
 
 ```js
 let test: void = undefined
@@ -65,14 +73,20 @@ const fun = (): void => {
 }
 ```
 
-任意类型或动态类型 **any**,任意类型的变量，可被赋任意值，恢复 JS 动态语言的特性。不推荐使用任意值，否则使用到处 TS 的目的就丧失了。声明类型，会被识别成任意类型。
+任意类型或动态类型 **any**，任意类型的变量，可被赋任类型的值，和其他类型相互兼容，恢复 JS 动态语言的特性。不推荐使用任意值，否则使用到处 TS 的目的就丧失了。未声明类型，会被识别成任意类型。
+
+> TS 引入 any 的原因是为可和 JS 交互，因为我们需要和 JS 编写的库交互，而类型未知。将变量声明为 any 类型，编辑器可能失去代码提示。
 
 ```js
 let name: any = 23,
 	name = 'jack'
 ```
 
-**never**类型，不存在值的类型，比如一个函数内部抛出错误，一个函数从来不会有返回值。
+**unknown** 类型，可被赋值任意类型的值，但是不能赋值给除了`unknown` 或者 `any` 意外类型的变量，只能将 unknown 类型的变量赋值给 any 和 unknown。
+
+> any 和 unknown 的最大区别是，unknown 是 top type (任何类型都是它的 subtype) , 而 any 即是 top type, 又是 bottom type (它是任何类型的 subtype ) , 这导致 any 基本上就是放弃了任何类型检查。unknown 比 any 更加安全。它迫使我们执行额外的类型检查来对变量执行操作。
+
+**never** 类型，不存在值的类型，比如一个函数内部抛出错误，一个函数有死循环。
 never 类型的值，只能被赋值 never 类型的值，将一个可能报错的函数赋值给它。
 
 ```js
@@ -88,7 +102,7 @@ let neverVar: never = (() => {
 })()
 ```
 
-## 复杂类型
+### 复杂类型
 
 基本类型声明都比较直观，需要注意的是其他类型的声明。
 
@@ -98,23 +112,40 @@ let neverVar: never = (() => {
 ① `type []` 往往用来声明单类型数组
 
 ```js
-let arry: number[] = [1, 2, 3, 4]
-// 混合数组,指定每个元素的类型
-let arr1: [number, string] = [1, 'string']
-// 类型个数不等于元素个数，会报错
-let arr2: [number, string] = [1, 'string', 1]
+let array: number[] = [1, 2, 3, 4]
+// 混合数组,元素类型有多种
+let arr1: (number | string)[] = [1, 'string']
 ```
 
 ② `Array<type>` 多类型数组
 
 ```js
 let test: Array<string> = ['jack']
-let test2: Array<string | number | object> = ['jack', 2, 'string', { name: 'helleo' }]
+let test2: Array<string | number | object> = [
+	'jack',
+	2,
+	'string',
+	{ name: 'hello' },
+]
 // 类型中没有 undefined,元素有 undefined，报错
-let test3: Array<string | number | object |> = ['jack', 2, 'string', { name: 'helleo' }, undefined]
+let test3: Array<string | number | object> = [
+	'jack',
+	2,
+	'string',
+	{ name: 'hello' },
+	undefined,
+]
 ```
 
-③ 对象数组
+③ 元组---特殊的数组
+长度固定、每个元素都指定类型的数组，元组的目的不是想数组一样使用，而是用于描述**格式固定**的数组。
+
+```ts
+const tuple: [string, number] = ['jack', 23]
+const tuple2: [string, number][] = [['jack', 23]]
+```
+
+④ 对象数组
 
 ```js
 let objectArr: { age: number, name: string }[] = [
@@ -143,10 +174,10 @@ enum CardSuit {
 console.log(CardSuit.car) // 0
 console.log(CardSuit.club)// 10
 console.log(CardSuit.heart)// 11
-console.log(CardSuit[1]) //diamonds 反向访问
+console.log(CardSuit[1]) // diamonds 反向访问
 ```
 
-不显示赋值，第一个枚举成员被赋值为 0,依次增加，可以是值获取成员，即枚举成员值为数值的枚举具有反向访问性质。
+不显示赋值，第一个枚举成员被赋值为 0，依次增加，可以是值获取成员，即枚举成员值为数值的枚举具有反向访问性质。
 
 字符串枚举
 
@@ -161,13 +192,13 @@ console.log(CardSuit['card']) // 报错，但是运行不报错
 console.log(CardSuit.car) // card
 console.log(CardSuit.club)// 10
 console.log(CardSuit.heart)// 11
-console.log(CardSuit[1]) //diamonds
+console.log(CardSuit[1]) // diamonds
 ```
 
 > 函数参数如何指定为枚举类型？
 
 ```js
-type enumCard = typeof CardSuit //type 自定义一个类型
+type enumCard = typeof CardSuit // type 自定义一个类型
 function testFun(key: number, enumValue: enumCard): any {
 	return enumValue[key]
 }
@@ -202,9 +233,9 @@ function getString(something: string | number): string {
 }
 ```
 
-## 类型推导
+### 类型推导
 
-变量在没有声明类型就被赋值，编译器会根据值来推测类型，后面将其他类型的值赋值给该变量，会报错。
+变量在没有声明类型就被赋值，编译器会**根据值来推测类型**，后面将其他类型的值赋值给该变量，会报错。
 
 ```js
 let test = 'jack' // test 类型为 string
@@ -219,17 +250,17 @@ test = 23
 test = '23'
 ```
 
-## 类型断言
+### 类型断言
 
 手动指定变量类型，叫作类型断言。比如为联合类型的指定具体的类型。
 
 ```js
 function getLength(something: string | number): number {
-	return something.length // 参数为 数值时，报错
+	return something.length // 参数为数值时，报错
 }
 ```
 
-使用类型断言：
+使用类型断言：`<type>` 或者 `variable as type`
 
 ```js
 const getLength: (target: string | number) => number = (target: string | number): number => {
