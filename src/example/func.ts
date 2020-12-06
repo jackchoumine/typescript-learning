@@ -2,7 +2,7 @@
  * @Description: ts 函数学习
  * @Date: 2020-05-10 22:09:30
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 00:34:16
+ * @LastEditTime: 2020-12-06 20:35:13 +0800
  * @LastEditors: JackChouMine
  */
 // 定义了一个函数并使用内联方式对参数进行了注解
@@ -66,3 +66,11 @@ function add5(...rest: any[]) {
 console.log(add5(1, 2, 4, 5))
 console.log(add5('1', 'b', 'c'))
 // console.log(add5('1', 'b', 2))// 参数严格符合声明，报错
+function restFun(aa: string, a: string = 't', b?: number, ...rest: string[]): void {
+
+}
+type twoSum = (a: number, b: number) => number
+const addTwo: twoSum = (a: number, b): number => {
+  return a + b
+}
+console.log(typeof addTwo)
