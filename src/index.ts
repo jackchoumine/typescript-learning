@@ -14,4 +14,4 @@
 // import './example/class'
 // import './example/abstractClass';
 // import './example/generic-1';
-import './example/generic-2';
+import './example/generic-2'

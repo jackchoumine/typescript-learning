@@ -19,7 +19,7 @@ interface Human {
 // 接口不能约束类的构造函数
 class Asian implements Human {
   constructor(public name: string) {
-    this.name = name;
+    this.name = name
   }
   public eat() { }
   public sleep() { }
@@ -40,13 +40,13 @@ const boy: Boy = {
   name: 'boy',
   eat() { },
   run() { },
-  cry() { }
+  cry() { },
   // sleep() { }
-};
+}
 
 // tslint:disable-next-line: max-classes-per-file
 class Auto {
-  public state = 1;
+  public state = 1
 }
 
 // 接口继承类，会把类的成员抽象出来，公有成员、受保护成员、私有成员
@@ -55,7 +55,7 @@ interface AutoInterface extends Auto { }
 
 // tslint:disable-next-line: max-classes-per-file
 class C implements AutoInterface {
-  public state = 2;
+  public state = 2
 }
 
 // Auto 的子类实现 AutoInterface 接口

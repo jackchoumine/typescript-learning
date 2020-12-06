@@ -26,13 +26,13 @@ interface Length {
   length: number
 }
 function hisLog<T extends Length>(value: T): T {
-  console.log(value, value.length);
-  return value;
+  console.log(value, value.length)
+  return value
 }
-hisLog('123');
-hisLog(['123']);
+hisLog('123')
+hisLog(['123'])
 // hisLog(2); // 参数不具备 length 属性，报错：类型的参数不能赋给类型“Length”的参数。
-hisLog({ name: 'jack', length: 23 }); // 传递一个具有 length 属性的对象
+hisLog({ name: 'jack', length: 23 }) // 传递一个具有 length 属性的对象
 
 // 总结
 /**

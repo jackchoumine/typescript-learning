@@ -9,7 +9,7 @@ const s3 = Symbol('jack')
 const s4 = Symbol('jack')
 // console.log(s3 !== s4)
 console.log(s3)
-console.log(typeof s4)//symbol
+console.log(typeof s4)// symbol
 console.log(Symbol(5))
 console.log(!!Symbol(5))
 // Symbol 可传入 字符串 数值  undefined
@@ -36,7 +36,7 @@ for (const key in obj2) {
 console.log('-------------------------')
 // Object.keys 中也拿不到 key
 Object.keys(obj2).map((key) => {
-  console.log(key);
+  console.log(key)
 })
 const testObj = { name: 'jack', age: 23 }
 for (const key in testObj) {
@@ -60,20 +60,20 @@ const s10 = Symbol.for('jack')
 // console.log(s8 === s9)//false
 // console.log(s10 === s9)//true Symbol.key 会使用传的参数寻找已创建的symbol 已经创建 就使用存在的 否则创建一个新的
 // Symbol.keyFor 接收一个Symbol.for 创建的 symbol，返回symbol的标识
-console.log(Symbol.keyFor(s10))//jack
-console.log(Symbol.keyFor(s8))//undefined
+console.log(Symbol.keyFor(s10))// jack
+console.log(Symbol.keyFor(s8))// undefined
 
-//11个内置的symbol值 一个对象用 Symbol 属性，使用 instanceOf 是会调用该方法
+// 11个内置的symbol值 一个对象用 Symbol 属性，使用 instanceOf 是会调用该方法
 console.log(Symbol.hasInstance)
 const inObj = {
   [Symbol.hasInstance](obj: object) {
     console.log('Symbol.hasInstance')
     console.log(obj)
-  }
+  },
 }
 const jack = { name: 'jack' }
-console.log(jack instanceof <any>inObj)
-console.log('-------------------');
+console.log(jack instanceof (inObj as any))
+console.log('-------------------')
 //  iterator 遍历器 可给一个数组添加遍历器，那么该数组就具有遍历器方法
 const testArry = [1, 2, 3]
 // 返回一个遍历器

@@ -13,10 +13,10 @@
  * 类说明
  */
 class Dog {
-  public static city: string = 'ChengDu'
+  public static city = 'ChengDu'
   public name: string
-  protected age: number = 20 // 给属性初始化，可不必在构造函数中初始化
-  private id?: string = 'jackChouName'// 可选属性可不初始化
+  protected age = 20 // 给属性初始化，可不必在构造函数中初始化
+  private id = 'jackChouName'// 可选属性可不初始化
   protected constructor(name: string) {
     this.name = name // 实例属性必须有初始化值或者再构造函数中被初始化
   }
@@ -24,7 +24,7 @@ class Dog {
     console.log('我的年纪是', this.age)
   }
   public speak() {
-    console.log('我的名字叫', this.name);
+    console.log('我的名字叫', this.name)
     return this.id
   }
 }

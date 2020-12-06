@@ -34,7 +34,7 @@ console.log(
   getFullName2(
     {
       firstName: 'Tom',
-      lastName: 'chou'
+      lastName: 'chou',
     })
 )
 
@@ -50,7 +50,7 @@ console.log(getVegetable({
   name: 'tomato', color: 'red',
 }))
 console.log(getVegetable({
-  name: 'tomato'
+  name: 'tomato',
 }))
 
 console.log(getVegetable({
@@ -62,12 +62,12 @@ console.log(getVegetable({
 console.log(getVegetable({
   name: 'tomato',
   color: 'red',
-  size: 2 // 使用类型断言 传递多余属性
+  size: 2, // 使用类型断言 传递多余属性
 } as Vegetable))
 console.log(getVegetable({
   name: 'tomato',
   color: 'yellow',
-  size: 2 // 使用索引签名，传递多余属性
+  size: 2, // 使用索引签名，传递多余属性
 }))
 
 // 类型兼容传递多余的属性
@@ -75,12 +75,12 @@ console.log(getVegetable({
 const vegetableInfo = {
   name: 'tomato',
   size: 10,
-  weight: '3kg'
+  weight: '3kg',
 }
 console.log(getVegetable(vegetableInfo))
 
 const vegetableObj: Vegetable = {
-  name: 'tomato'
+  name: 'tomato',
 }
 // vegetableObj.name = 'onion' // 这里提示只读属性不可修改
 
@@ -111,7 +111,7 @@ const porpInterTest: PropInter = {
   0: 'jack',
   1: 'Tom',
   2: 'Pony',
-  123: 'hello'
+  123: 'hello',
   // test: 'Roby' // 使用字符串声明属性，报错
 }
 console.log(porpInterTest[2])// note 使用数值作为属性，必须使用方括号访问属性
@@ -150,12 +150,12 @@ const student: Student = {
   name: 'Jack',
   idNo: '1231314',
   age: 23,
-  stuNo: '20180912'
+  stuNo: '20180912',
 }
 const teacher: Teacher = {
   age: 36,
   name: 'Tom',
-  idNo: '522424X'
+  idNo: '522424X',
 }
 console.log(student)
 console.log(teacher)

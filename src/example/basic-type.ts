@@ -5,30 +5,30 @@
  * @LastEditTime: 2020-05-11 00:42:36
  * @LastEditors: JackChouMine
  */
-let age: number = 123
+let age = 123
 console.log(age)
 // 元组
 let tuple: [number, string, boolean, string] = [3, 'jack', true, 'zhou']
 console.log(tuple.join(''))
 // any
 let nameN: any = 'jack'
-console.log(typeof nameN);
+console.log(typeof nameN)
 let arr: number[] = [1, 2]
-console.log('****');
+console.log('****')
 // void类型
 const consoleText = (text: string): void => {
   console.log(text)
 }
 consoleText('你好')
 let v: void
-console.log(typeof v);
+console.log(typeof v)
 
 // v = null
 enum CardSuit {
   car = 'card',
   club = 10,
   heart,
-  diamonds = 1
+  diamonds = 1,
 }
 // console.log(CardSuit['card']) // 报错，但是运行不报错
 console.log(CardSuit.car) // card
@@ -70,7 +70,7 @@ const funAge: (age: number) => string = (age: number): string => {
 function sum(first: number = 0, ...rest: number[]): number {
   return rest.reduce((total, current) => total + current) + first
 }
-console.log('********************');
+console.log('********************')
 console.log(sum(undefined, 2, 3, 4, 5, 6))// 21
 // object
 const consoleObj = (arg: object): void => {
