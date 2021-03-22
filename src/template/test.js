@@ -17,19 +17,19 @@
 // const it = foo(10)
 // console.log(it.next())
 // // it.return(1)
-// it.throw('hello')// 
+// it.throw('hello')//
 // console.log(it.next('hello'))
 // 委托生成器
 
-function* foo () {
+function* foo() {
   yield 3
   yield 4
   return 'foo'
 }
-function* bar () {
+function* bar() {
   yield 1
   yield 2
-  const f = yield* foo() //让位给另一个生成器
+  const f = yield* foo() // 让位给另一个生成器
   console.log(f)
   yield* [5, 6]
 }
