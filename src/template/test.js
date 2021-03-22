@@ -36,3 +36,7 @@ function* bar() {
 for (const it of bar()) {
   console.log(it)
 }
+Object.create(null) // 报错 不能传递原始类型
+Object.create([]) // 报错 不能传递原始类型
+const map = new Map()
+Object.create(map) // 报错 不能传递原始类型

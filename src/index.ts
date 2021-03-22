@@ -5,7 +5,7 @@
  * @LastEditTime: 2020-05-21 01:51:08
  * @LastEditors: JackChouMine
  */
-// import './example/basic-type'
+import './example/basic-type'
 // import './example/symbol'
 // import './example/ES6-class-1'
 // import './example/interface'
@@ -14,4 +14,4 @@
 // import './example/class'
 // import './example/abstractClass';
 // import './example/generic-1';
-import './example/generic-2'
+// import './example/generic-2'
