@@ -66,5 +66,5 @@ type Log = <T>(value: T) => T
 type In<T = string> = (value: T) => T
 const myInt: In<number> = myOut
 
-// 小结：
+// NOTE 小结：
 // 泛型把参数类型变成了变量，在使用时再给类型赋值。
