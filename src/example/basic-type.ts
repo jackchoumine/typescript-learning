@@ -75,7 +75,7 @@ const errorFun = (message: string): never => {
 // })()
 // never 仅能被赋值给另外一个 never 类型，因此你可以用它来进行编译时的全面的检查
 // NOTE never 全面检查类型：比如 新增联合类型而没有对应的实现。
-type Foo = string | number //| boolean
+type Foo = string | number // | boolean
 /*
 // NOTE Foo 新增一个类型，而函数对应的实现，会产生一个错误
 */
