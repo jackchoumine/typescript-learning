@@ -15,3 +15,6 @@ import './example/basic-type'
 // import './example/abstractClass';
 // import './example/generic-1';
 // import './example/generic-2'
+
+// 难点
+import './difficulty/type'
