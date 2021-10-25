@@ -21,7 +21,7 @@ function decorator(prototype: any, methodName: string, descriptor: PropertyDescr
   console.log(methodName)
   console.log(descriptor)
   const originalMethod = descriptor.value
-  descriptor.value = function () {
+  descriptor.value = function() {
     console.log('decorator')
     // NOTE this 是实例化的对象
     console.log(this)
@@ -37,7 +37,7 @@ class User {
     console.log('User ')
     this.name = name
   }
-  @decorator //('/user')())
+  @decorator // ('/user')())
   getName() {
     return this.name
   }
