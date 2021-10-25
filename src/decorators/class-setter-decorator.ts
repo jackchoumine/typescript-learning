@@ -3,7 +3,7 @@
  * @Description : 类的装饰器
  * @Date        : 2021-10-25 22:17:33 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-10-26 00:06:27 +0800
+ * @LastEditTime: 2021-10-26 00:13:54 +0800
  * @LastEditors : JackChou
  */
 
@@ -53,6 +53,20 @@ function log(prototype: any, propName: string): any {
   // console.log(descriptor)
   return descriptor
 }
+
+/**
+ * 参数装饰器
+ * @param prototype 原型
+ * @param methodName 方法名称
+ * @param nameIndex 参数位置
+ */
+function paramDecorator(prototype: any, methodName: string, nameIndex: number) {
+  console.log('paramDecorator')
+  console.log(prototype)
+  console.log(methodName)
+  console.log(nameIndex)
+  // TODO 可左哪些操作呢？
+}
 class User {
   @log
   public age = 18
@@ -68,6 +82,9 @@ class User {
   @decorator
   set name(name: string) {
     this._name = name
+  }
+  getInfo(@paramDecorator name: string, age: number) {
+    console.log(name, age)
   }
 }
 const user = new User('Jack')
@@ -87,3 +104,5 @@ console.log(user.name)
 // 1. 属性装饰在定义后执行
 // 2. 装饰器参数：第一个为原型，第二个为属性名称
 // 3. 返回描述对象可对属性进行配置
+
+// 参数装饰器
