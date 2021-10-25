@@ -1,10 +1,10 @@
-/*// @ts-nocheck
+// @ts-nocheck
+/*
  * @Description : 类的装饰器
  * @Date        : 2021-10-25 22:17:33 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-10-25 22:38:54 +0800
+ * @LastEditTime: 2021-10-25 23:01:53 +0800
  * @LastEditors : JackChou
- */
 
 console.log('类的装饰器-----')
 
@@ -68,3 +68,4 @@ const DecoratorUser = decorator()(User)
 // 3. 使用工厂函数返回装饰器，然后将需要装饰的类转入，返回一个新的类，解决类型提示问题
 
 // 4. 构造函数的类型：`type Constructor = new (...args: any[]) => any`
+*/
