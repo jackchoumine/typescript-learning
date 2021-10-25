@@ -3,20 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './src/index.ts',
   output: {
-    filename: 'main.js'
+    filename: 'main.js',
   },
   mode: process.env.NODE_ENV,
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      use: 'ts-loader', //处理ts
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader', //处理ts
+        exclude: /node_modules/,
+      },
+    ],
   },
-  devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
   devServer: {
     contentBase: './dist',
     stats: 'errors-only',
@@ -24,14 +26,14 @@ module.exports = {
     host: 'localhost',
     port: 8089,
     open: true,
-    hot: true
+    hot: true,
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['./dist']
+      cleanOnceBeforeBuildPatterns: ['./dist'],
     }),
     new HtmlWebpackPlugin({
-      template: './src/template/index.html'
-    })
-  ]
+      template: './src/template/index.html',
+    }),
+  ],
 }
