@@ -10,7 +10,7 @@
     "array-type": false,
     "arrow-return-shorthand": true,
     "no-shadowed-variable": false,
-    "only-arrow-functions":false,
+    "only-arrow-functions": false,
     "forin": false,
     "curly": true,
     "deprecation": {
@@ -75,7 +75,6 @@
         }
       ]
     },
-<<<<<<< HEAD
     "variable-name": {
       "options": ["ban-keywords", "check-format", "allow-pascal-case"]
     },
@@ -101,10 +100,3 @@
     "component-selector": [true, "element", "app", "kebab-case"]
   }
 }
-=======
-    "max-classes-per-file": false,
-    "no-empty-interface": false
-  },
-  "rulesDirectory": []
-}
->>>>>>> 1aec382fda2c5cbd40364dcd3ab9b1bc3379cbfa

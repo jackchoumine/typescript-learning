@@ -13,7 +13,16 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader', //处理ts
+        use: {
+          loader: 'ts-loader',
+          options: {
+            // transpileOnly: true,
+            // compilerOptions: {
+            //   noEmit: true,
+            //   noEmitOnError: true,
+            // },
+          },
+        }, //处理ts
         exclude: /node_modules/,
       },
     ],
