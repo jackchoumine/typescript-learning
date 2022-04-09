@@ -3,7 +3,7 @@
  * @Description : 使用装饰器
  * @Date        : 2021-10-26 00:15:49 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-10-26 00:28:43 +0800
+ * @LastEditTime: 2022-04-09 19:31:12 +0800
  * @LastEditors : JackChou
  */
 const userInfo = void 0
@@ -40,5 +40,5 @@ class User {
   }
 }
 const user = new User('jack', 30)
-console.log(user.getName())
+// console.log(user.getName())
 console.log(user.getAge())

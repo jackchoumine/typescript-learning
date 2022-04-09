@@ -2,11 +2,11 @@
  * @Description: 枚举类型
  * @Date: 2020-05-11 01:06:32
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-11 01:47:29
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2021-10-24 22:27:13 +0800
+ * @LastEditors : JackChou
  */
 /*
-枚举：一组有名字的产量的集合。
+枚举：一组有名字的变量的集合。
 将硬编码和可能改变的常量抽象成枚举，可提高程序的可读性和可维护性。
 */
 // 数字枚举
@@ -76,7 +76,8 @@ const months = [Month.Jan, Month.Feb, Month.Mar]
 
 // 使用枚举类型
 enum E {
-  a, b,
+  a,
+  b,
 }
 enum F {
   a = 1,
@@ -86,11 +87,11 @@ enum F {
 const e: E = 3
 const f: F = 3
 // e === f//不同类型的枚举不可进行比较
-const e1: E.a = 1// 枚举成员作为类型
+const e1: E.a = 1 // 枚举成员作为类型
 const e2: E.b = 1
 let e3: E.a = 3
 // e1 === e2 // 不同枚举成员类型不可比较
-console.log(e1 === e3)// 相同枚举成员声明的变量，是可比较的
+console.log(e1 === e3) // 相同枚举成员声明的变量，是可比较的
 
 // 使用字符串枚举
 enum H {

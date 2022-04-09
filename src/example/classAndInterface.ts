@@ -10,7 +10,7 @@
 interface Human {
   // new(name: string) // 试图约束类的构造函数，在类实现接口时会报错
   name: string
-  eat(): void
+  eat (): void
 }
 
 // 使用类实现接口
@@ -18,29 +18,29 @@ interface Human {
 // 接口只能约束类的公有成员
 // 接口不能约束类的构造函数
 class Asian implements Human {
-  constructor(public name: string) {
+  constructor (public name: string) {
     this.name = name
   }
-  public eat() { }
-  public sleep() { }
+  public eat () { }
+  public sleep () { }
 }
 
 // 接口继承
 // 接口像类一样，可相互继承，一个接口可继承多个接口
 interface Man extends Human {
-  run(): void
+  run (): void
 }
 interface Child {
-  cry(): void
+  cry (): void
 }
 // 一个接口继承多接口,父级接口使用逗号分开
 interface Boy extends Child, Man { }
 
 const boy: Boy = {
   name: 'boy',
-  eat() { },
-  run() { },
-  cry() { },
+  eat () { },
+  run () { },
+  cry () { },
   // sleep() { }
 }
 

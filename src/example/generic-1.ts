@@ -2,8 +2,8 @@
  * @Description: 泛型函数和泛型接口
  * @Date: 2020-05-21 01:02:56
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 01:49:26
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2021-10-25 23:55:45 +0800
+ * @LastEditors : JackChou
  */
 // 1. 泛型的概念
 // 现在有一个函数
@@ -13,34 +13,34 @@
 // }
 // 需求有变化：现在希望函数能接受字符串数组
 // 改进1：函数重载
-function log(value: string): string
-function log(value: string[]): string[]
+// function log(value: string): string
+// function log(value: string[]): string[]
 // 在最宽泛的约束中实现函数
-function log(value: any) {
-  console.log(value)
-  return value
-}
+// function log(value: any) {
+//   console.log(value)
+//   return value
+// }
 // 缺点：代码多
 
 // 改进2：联合类型
 // 为了不报错，取另一个函数名
-function log2(value: string | string[]): string | string[] {
+function log2 (value: string | string[]): string | string[] {
   console.log(value)
   return value
 }
 // 缺点：无法提现参数和返回值之间的类型关系
 
 // 改进3：希望函数能接受任意类型的参数
-function log3(value: any) {
+function log3 (value: any) {
   console.log(value)
   return value
 }
-// 缺点：① 使用TS的目的是希望使用它的类型系统，但是这样又回到JS
-// ② 想传入数组，也返回数组，但是使用 any 类型达不到这样的要求，不能提现参数和返回值之间的类型关系
+// 缺点：① 使用 TS 的目的是希望使用它的类型系统，但是这样又回到JS
+// ② 想传入数组，也返回数组，但是使用 any 类型达不到这样的要求，不能约束参数和返回值之间的类型关系
 
-// 泛型：不预先确定数据类型，在使用时才确定，但是约定函数参数和返回值之间的关系。
+// 泛型：不预先确定变量类型，在使用时才确定，但是约定函数参数和返回值之间的关系。
 // 使用尖括号在函数名称后面指定泛型，泛型声明往往使用大写字母 T V U 等
-function print<T>(value: T): T {
+function print<T> (value: T): T {
   console.log(value)
   return value
 }
@@ -57,7 +57,7 @@ type Out = <T>(value: T) => T
 const myOut: Out = print
 myOut<number>(3)
 
-// 3.泛型接口
+// 3. 泛型接口
 // tslint 规则中使用 "callable-types": false, 使用接口定义函数类型不转为类型别名
 type Log = <T>(value: T) => T
 
@@ -68,3 +68,4 @@ const myInt: In<number> = myOut
 
 // NOTE 小结：
 // 泛型把参数类型变成了变量，在使用时再给类型赋值。
+// 泛型约定了变量的之间的类型关系

@@ -11,30 +11,30 @@
  */
 abstract class Animal {
   public age: number
-  constructor(age: number) {
+  constructor (age: number) {
     this.age = age
   }
   // 在抽象类中实现方法
-  public makeLove() {
+  public makeLove () {
     console.log('have sex')
   }
-  public abstract sleep(): void // 抽象方法需要在子类中实现
+  public abstract sleep (): void // 抽象方法需要在子类中实现
 }
 // tslint:disable-next-line: max-classes-per-file
 class Cat extends Animal {
-  constructor(age: number, public name: string, public food: string, public legSize: number) {
+  constructor (age: number, public name: string, public food: string, public legSize: number) {
     super(age)
     this.name = name
     this.food = food
     this.legSize = legSize
   }
-  public eat() {
+  public eat () {
     console.log(`吃${this.food}了`)
   }
-  public run() {
+  public run () {
     console.log(`我用${this.legSize}只脚运动`)
   }
-  public sleep() {
+  public sleep () {
     console.log('cat sleep')
   }
 }
@@ -45,10 +45,10 @@ console.log(cat.sleep())
 
 // tslint:disable-next-line: max-classes-per-file
 class Fish extends Animal {
-  constructor(public age: number) {
+  constructor (public age: number) {
     super(age)
   }
-  public sleep() {
+  public sleep () {
     console.log('fish sleep')
   }
 }
@@ -64,15 +64,15 @@ animals.forEach((v) => {
 // 方法返回 this ,可实现链式调用
 // tslint:disable-next-line: max-classes-per-file
 class WorkFlow {
-  public up() {
+  public up () {
     console.log('up')
     return this
   }
-  public eat() {
+  public eat () {
     console.log('eat')
     return this
   }
-  public work() {
+  public work () {
     console.log('work')
     return this
   }
@@ -80,7 +80,7 @@ class WorkFlow {
 
 // tslint:disable-next-line: max-classes-per-file
 class MyWorkFlow extends WorkFlow {
-  public goHome() {
+  public goHome () {
     console.log('goHome')
     return this
   }

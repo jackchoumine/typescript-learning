@@ -10,6 +10,7 @@
     "array-type": false,
     "arrow-return-shorthand": true,
     "no-shadowed-variable": false,
+    "only-arrow-functions":false,
     "forin": false,
     "curly": true,
     "deprecation": {
@@ -54,15 +55,7 @@
         "esSpecCompliant": true
       }
     ],
-    "space-before-function-paren": {
-      "options": {
-        "anonymous": "never",
-        "asyncArrow": "always",
-        "constructor": "never",
-        "method": "never",
-        "named": "never"
-      }
-    },
+    "space-before-function-paren": "always",
     "typedef": [false, "call-signature"],
     "typedef-whitespace": {
       "options": [

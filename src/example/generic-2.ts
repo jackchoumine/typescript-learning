@@ -2,8 +2,8 @@
  * @Description: 泛型类和泛型约束
  * @Date: 2020-05-21 01:02:56
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 02:15:23
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2021-10-24 22:41:48 +0800
+ * @LastEditors : JackChou
  */
 // 泛型可用在接口和函数中，还可以用在类中
 // TODO Log<T> 所有声明都必须具有相同的类型参数
@@ -20,12 +20,12 @@
 // const yourLog = new Log(); // 实例化时不指定类型
 // yourLog.run({ age: 34 }); // 可传递任意类型
 
-// 类型约束：约束泛型的类型，比如我们希望参数都有一个length属性
+// TODO 泛型约束：约束泛型的类型，比如我们希望参数都有一个 length 属性、某某方法
 
 interface Length {
   length: number
 }
-function hisLog<T extends Length>(value: T): T {
+function hisLog<T extends { length: number }> (value: T): T {
   console.log(value, value.length)
   return value
 }
@@ -41,3 +41,18 @@ hisLog({ name: 'jack', length: 23 }) // 传递一个具有 length 属性的对�
  * 3. 明确类型之间的约束，团队更好协作
  * 4. 编辑器代码提示更加友好
  */
+class Queue<T> {
+  private data: T[] = []
+  push (item: T) {
+    this.data.push(item)
+  }
+  pop () {
+    return this.data.pop()
+  }
+}
+
+const queue = new Queue<string>()
+queue.push('123')
+queue.push('124')
+// NOTE 搜索类型声明
+// https://www.typescriptlang.org/dt/search?search=

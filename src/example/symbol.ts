@@ -66,7 +66,7 @@ console.log(Symbol.keyFor(s8))// undefined
 // 11个内置的symbol值 一个对象用 Symbol 属性，使用 instanceOf 是会调用该方法
 console.log(Symbol.hasInstance)
 const inObj = {
-  [Symbol.hasInstance](obj: object) {
+  [Symbol.hasInstance] (obj: object) {
     console.log('Symbol.hasInstance')
     console.log(obj)
   },

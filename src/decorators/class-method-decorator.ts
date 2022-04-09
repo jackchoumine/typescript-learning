@@ -15,13 +15,13 @@ console.log('类的方法的装饰器-----')
  * @param methodName 被装饰的方法名称
  * @param descriptor 方法描述对象
  */
-function decorator(prototype: any, methodName: string, descriptor: PropertyDescriptor) {
+function decorator (prototype: any, methodName: string, descriptor: PropertyDescriptor) {
   console.log('decorator')
   console.log(prototype)
   console.log(methodName)
   console.log(descriptor)
   const originalMethod = descriptor.value
-  descriptor.value = function() {
+  descriptor.value = function () {
     console.log('decorator')
     // NOTE this 是实例化的对象
     console.log(this)
@@ -33,12 +33,12 @@ function decorator(prototype: any, methodName: string, descriptor: PropertyDescr
 // @decorator
 class User {
   // @decorator // NOTE 构造函数没装饰器
-  constructor(public name: string) {
+  constructor (public name: string) {
     console.log('User ')
     this.name = name
   }
   @decorator // ('/user')())
-  getName() {
+  getName () {
     return this.name
   }
 }

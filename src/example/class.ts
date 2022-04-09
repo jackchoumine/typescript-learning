@@ -17,13 +17,13 @@ class Dog {
   public name: string
   protected age = 20 // 给属性初始化，可不必在构造函数中初始化
   private id = 'jackChouName'// 可选属性可不初始化
-  protected constructor(name: string) {
+  protected constructor (name: string) {
     this.name = name // 实例属性必须有初始化值或者再构造函数中被初始化
   }
-  public run() {
+  public run () {
     console.log('我的年纪是', this.age)
   }
-  public speak() {
+  public speak () {
     console.log('我的名字叫', this.name)
     return this.id
   }
@@ -43,7 +43,7 @@ console.log(Object.getPrototypeOf(Dog))// 不含 name 属性
 // tslint:disable-next-line: max-classes-per-file // TS 一个文件只允许声明一个类
 class Husky extends Dog {
   // 在构造函数中对参数进行注解，就不用额外声明
-  constructor(name: string, public color: string) {
+  constructor (name: string, public color: string) {
     super(name)// 类继承时，必须先调用父类方法
     this.color = color
   }

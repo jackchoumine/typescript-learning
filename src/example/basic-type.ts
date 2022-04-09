@@ -2,8 +2,8 @@
  * @Description: ts 类型
  * @Date: 2019-12-07 21:52:05
  * @Author: JackChouMine
- * @LastEditTime: 2020-12-06 19:56:29 +0800
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2021-10-24 22:13:20 +0800
+ * @LastEditors : JackChou
  */
 // NOTE
 /*
@@ -44,16 +44,16 @@ console.log(CardSuit.club) // 10
 console.log(CardSuit.heart) // 11
 console.log(CardSuit[1]) // diamonds
 type enumCard = typeof CardSuit
-function testFun(enumValue: 'jack' | 'tom'): any {
+function testFun (enumValue: 'jack' | 'tom'): any {
   return enumValue
 }
 console.log(testFun('tom'))
 console.log('**************')
-function printInfo(person: {
+function printInfo (person: { name: string; age: number; scores: number[] }): {
   name: string
   age: number
-  scores: number[]
-}): { name: string; age: number; total: number } {
+  total: number
+} {
   const total = person.scores.reduce((total, current) => total + current)
   const { name, age } = person
   return { name, age, total }
@@ -79,7 +79,7 @@ type Foo = string | number // | boolean
 /*
 // NOTE Foo 新增一个类型，而函数对应的实现，会产生一个错误
 */
-function controlFlowAnalysisWithNever(foo: Foo) {
+function controlFlowAnalysisWithNever (foo: Foo) {
   if (typeof foo === 'string') {
     // 这⾥ foo 被收窄为 string 类型
   } else if (typeof foo === 'number') {
@@ -97,13 +97,13 @@ function controlFlowAnalysisWithNever(foo: Foo) {
 // never 只能被赋值另一个 never 类型的值
 // 使用场景：void 函数返回值 never 全面的类型检查，比如在 else|switch default 语句检查联合类型
 
-function fun(age: number): string {
+function fun (age: number): string {
   return age.toString()
 }
 const funAge: (age: number) => string = (age: number): string => {
   return age.toString()
 }
-function sum(first: number = 0, ...rest: number[]): number {
+function sum (first: number = 0, ...rest: number[]): number {
   return rest.reduce((total, current) => total + current) + first
 }
 console.log('********************')
@@ -148,7 +148,7 @@ declare var Object: ObjectConstructor;
 */
 // 不提示错误
 const obj222: object = {
-  toString() {
+  toString () {
     return 123
   }, // Error
 }
@@ -231,9 +231,17 @@ type PointCopy1 = {
   [Key in keyof Point]: Point[Key] // (A)
 }
 
-// 类型断言
+// 类型断言 和 类型保护
+// NOTE 如果你确定一个联合类型的变量，并且可以被推断出一个类型，你可以用类型断言来告诉 TypeScript，“现在我知道这个变量的确实类型是  T 类型”。
+// 类型保护有这些：
+// as 类型断言
+// typeof 检查类型
+// in 语法检查属性
+// instanceof 语法
+// 读属性
+
 // refers to a value but it is being as a value here  typescript
-const getLength: (target: string | number) => number = (target: string | number): number => {
+function getLength (target: string | number): number {
   if ((target as string).length || (target as string).length) {
     return (target as string).length
   } else {
