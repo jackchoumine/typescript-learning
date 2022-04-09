@@ -8,7 +8,7 @@
  */
 const userInfo = void 0
 
-function catchError(message: string) {
+function catchError (message: string) {
   return function (prototype: any, name: string, descriptor: PropertyDescriptor) {
     const method = descriptor.value
     descriptor.value = function (...args: any[]) {
@@ -23,15 +23,15 @@ function catchError(message: string) {
 }
 
 class User {
-  constructor(name: string, age: number) {
+  constructor (name: string, age: number) {
     this.name = name
     this.age = age
   }
   @catchError('age 不存在')
-  getAge() {
+  getAge () {
     return userInfo.age
   }
-  getName() {
+  getName () {
     try {
       return userInfo.name
     } catch (e) {

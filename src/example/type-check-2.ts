@@ -7,7 +7,7 @@
  */
 // 类型兼容：Y 类型的变量可赋值给 X 类型的变量，我们说 X 类型兼容 Y 类型，X 类型更加宽泛。
 // X 兼容 Y: X(目标类型) =  Y(源类型)
-let testStr: string = 'test'
+let testStr = 'test'
 // testStr = null // 把 null 赋值给 string 类型的变变量，没有报错，string 兼容 null
 // 类型兼容可能会引发不可预知的问题，但是增加了灵活性，广泛的存在接口、类和函数中。
 
@@ -32,16 +32,16 @@ x = y // y 可赋值给 x
 // 类的兼容性和接口比较相似，都是比较结构，具有少数成员的类可能兼容多数的，反之不行。
 // 在比较两个类的兼容性时，静态成员和构造函数不参与比较。两个类具有相同的实例成员，则类的实例相互兼容，成员少的兼容成员多的，反过来不行。
 class A {
-  public id: number = 1
-  constructor(p: number, q: number) {}
+  public id = 1
+  constructor (p: number, q: number) {}
 }
 
 class B {
   // 静态成员
-  public static s: string = 'jack'
-  public id: number = 1
+  public static s = 'jack'
+  public id = 1
   // 构造函数和 A 的不同
-  constructor(p: string) {}
+  constructor (p: string) {}
 }
 
 let aa = new A(20, 21)
@@ -51,11 +51,11 @@ bb = aa // B 的实例兼容 A 的实例
 
 class D {
   // 静态成员
-  public static s: string = 'jack'
-  public id: number = 1
-  public city: number = 1 // 比 B 多一个成员
+  public static s = 'jack'
+  public id = 1
+  public city = 1 // 比 B 多一个成员
   // 构造函数和 A 的不同
-  constructor(p: string) {}
+  constructor (p: string) {}
 }
 let dd = new D('jack')
 bb = dd // B 的实例兼容 D 的实例
@@ -68,7 +68,7 @@ type Handler = (a: number, b: number) => void
 // 1. 形参的参数个数大于等于实参的参数个数
 // 2. 参数类型兼容
 // 3. 返回值类型相同或者兼容
-function hof(callback: Handler) {
+function hof (callback: Handler) {
   return callback
 }
 
@@ -117,11 +117,11 @@ h = l // h 兼容 l，h 的返回值类型是 l 返回值的子类型。成员�
 
 // 函数重载
 // 函数声明列表是目标函数，具体的实现是源函数。编译器执行时会查找声明列表，使用匹配的声明执行实现，声明列表的参数要多余实现的参数，返回值类型也要兼容。
-function overload(a: number, b: number): number
-function overload(a: string, b: string): string
+function overload (a: number, b: number): number
+function overload (a: string, b: string): string
 // function overload(a: any, b: any, c: any): any { }// 实现的参数比声明的多
 // function overload(a: any, b: any): number { }// 返回值不兼容第二个声明
-function overload(a: any, b: any): any {} // 返回值不兼容第二个声明
+function overload (a: any, b: any): any {} // 返回值不兼容第二个声明
 
 // 枚举的兼容
 // 数字枚举和number相互兼容 string兼容字符串枚举

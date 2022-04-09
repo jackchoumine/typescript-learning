@@ -15,7 +15,7 @@ console.log('类的访问器装饰器-----')
  * @param methodName 被装饰的方法名称
  * @param descriptor 方法描述对象
  */
-function decorator(prototype: any, methodName: string, descriptor: PropertyDescriptor) {
+function decorator (prototype: any, methodName: string, descriptor: PropertyDescriptor) {
   console.log('decorator')
   console.log(prototype)
   console.log(methodName)
@@ -27,7 +27,7 @@ function decorator(prototype: any, methodName: string, descriptor: PropertyDescr
  * @param prototype 原型
  * @param propName 属性名称
  */
-function log(prototype: any, propName: string): any {
+function log (prototype: any, propName: string): any {
   // NOTE 没有描述对象
   console.log('log')
   console.log(prototype)
@@ -41,11 +41,11 @@ function log(prototype: any, propName: string): any {
     // writable: false,
     configurable: true,
     enumerable: true,
-    set(newValue: any) {
+    set (newValue: any) {
       console.log('setter', newValue)
       value = newValue
     },
-    get() {
+    get () {
       console.log('getter')
       return value
     },
@@ -60,7 +60,7 @@ function log(prototype: any, propName: string): any {
  * @param methodName 方法名称
  * @param nameIndex 参数位置
  */
-function paramDecorator(prototype: any, methodName: string, nameIndex: number) {
+function paramDecorator (prototype: any, methodName: string, nameIndex: number) {
   console.log('paramDecorator')
   console.log(prototype)
   console.log(methodName)
@@ -71,19 +71,19 @@ class User {
   @log
   public age = 18
   // NOTE 不要取同一个变量，否则爆栈
-  constructor(public name: string) {
+  constructor (public name: string) {
     console.log('User ')
     this._name = name
   }
   // @decorator NOTE 不能同时在 getter setter 同时使用
-  get name() {
+  get name () {
     return this._name
   }
   @decorator
-  set name(name: string) {
+  set name (name: string) {
     this._name = name
   }
-  getInfo(@paramDecorator name: string, age: number) {
+  getInfo (@paramDecorator name: string, age: number) {
     console.log(name, age)
   }
 }

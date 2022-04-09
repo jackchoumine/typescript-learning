@@ -11,8 +11,8 @@ interface IPerson {
   age: number
 }
 class Teacher {
-  constructor(private info: IPerson) {}
-  getInfo<K extends keyof IPerson>(key: K): IPerson[K] {
+  constructor (private info: IPerson) {}
+  getInfo<K extends keyof IPerson> (key: K): IPerson[K] {
     return this.info[key]
   }
 }
@@ -45,6 +45,6 @@ const movie: Movie = {
   subject: 3001114,
 }
 
-function getMovieInfo<K extends keyof Movie>(key: K): Movie[K] {
+function getMovieInfo<K extends keyof Movie> (key: K): Movie[K] {
   return movie[key]
 }

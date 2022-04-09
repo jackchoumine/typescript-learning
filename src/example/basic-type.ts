@@ -44,12 +44,12 @@ console.log(CardSuit.club) // 10
 console.log(CardSuit.heart) // 11
 console.log(CardSuit[1]) // diamonds
 type enumCard = typeof CardSuit
-function testFun(enumValue: 'jack' | 'tom'): any {
+function testFun (enumValue: 'jack' | 'tom'): any {
   return enumValue
 }
 console.log(testFun('tom'))
 console.log('**************')
-function printInfo(person: { name: string; age: number; scores: number[] }): {
+function printInfo (person: { name: string; age: number; scores: number[] }): {
   name: string
   age: number
   total: number
@@ -79,7 +79,7 @@ type Foo1 = string | number // | boolean
 /*
 // NOTE Foo 新增一个类型，而函数对应的实现，会产生一个错误
 */
-function controlFlowAnalysisWithNever(foo: Foo1) {
+function controlFlowAnalysisWithNever (foo: Foo1) {
   if (typeof foo === 'string') {
     // 这⾥ foo 被收窄为 string 类型
   } else if (typeof foo === 'number') {
@@ -97,13 +97,13 @@ function controlFlowAnalysisWithNever(foo: Foo1) {
 // never 只能被赋值另一个 never 类型的值
 // 使用场景：void 函数返回值 never 全面的类型检查，比如在 else|switch default 语句检查联合类型
 
-function fun(age: number): string {
+function fun (age: number): string {
   return age.toString()
 }
 const funAge: (age: number) => string = (age: number): string => {
   return age.toString()
 }
-function sum(first: number = 0, ...rest: number[]): number {
+function sum (first: number = 0, ...rest: number[]): number {
   return rest.reduce((total, current) => total + current) + first
 }
 console.log('********************')
@@ -148,7 +148,7 @@ declare var Object: ObjectConstructor;
 */
 // 不提示错误
 const obj222: object = {
-  toString() {
+  toString () {
     return 123
   }, // Error
 }
@@ -241,7 +241,7 @@ type PointCopy1 = {
 // 读属性
 
 // refers to a value but it is being as a value here  typescript
-function getLength(target: string | number): number {
+function getLength (target: string | number): number {
   if ((target as string).length || (target as string).length) {
     return (target as string).length
   } else {

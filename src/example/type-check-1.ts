@@ -22,25 +22,25 @@
 /**
  * 声明变量、设置函数默认参数时，不必声明类型，会根据值的类型推断类型。
  */
-let hello = 'hello';
-let array = []; // 推断为 any[]
-const NO = 34; // 常量，不推断
-const c = (x = 20) => x + 1; // 函数默认参数类型推断
+let hello = 'hello'
+let array = [] // 推断为 any[]
+const NO = 34 // 常量，不推断
+const c = (x = 20) => x + 1 // 函数默认参数类型推断
 
 // 最佳通用类型推断：当需要从多个值中推断类型时，会推断出兼容当前所有值的最佳类型。
-let testArray = [1, null]; // 关闭strictNullChecks，会推断成 number[]
+let testArray = [1, null] // 关闭strictNullChecks，会推断成 number[]
 
 // 以上是从右向左的推断，即从表达式的值推断变量类型。
 // 上下文推断：根据代码上下文推断变量类型，比如事件绑定
 
 window.onkeydown = (ev: Event) => { // TODO 不指定类型，报错为何？
-  console.log(ev);
-};
+  console.log(ev)
+}
 
 // 类型断言：用时候开发者比编译器更了解变量类型，可以手动指定变量的类型。
 
 interface Foo {
-  bar: number;
+  bar: number
 }
 // const bar: Foo = {};// 使用接口约定对象结构，会提示没有声明 bar 属性
-const bar = {} as Foo; // 使用类型断言，但是不会提示没有声明 bar 属性，辅助信息丢失，因此，不要滥用类型断言。没有对代码上下文有充足的了解，这样可能引发类型错误。
+const bar = {} as Foo // 使用类型断言，但是不会提示没有声明 bar 属性，辅助信息丢失，因此，不要滥用类型断言。没有对代码上下文有充足的了解，这样可能引发类型错误。
