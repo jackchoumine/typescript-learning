@@ -2,8 +2,8 @@
  * @Description:TS类
  * @Date: 2020-05-14 00:38:53
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-14 01:37:44
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2022-04-09 19:36:55 +0800
+ * @LastEditors : JackChou
  */
 /**
  * 无论在TS还是JS，类成员的属性都是实例属性，不是原型属性，方法是实例方法
@@ -28,8 +28,8 @@ class Dog {
     return this.id
   }
 }
-console.log(Dog.prototype)// 不含 name 属性
-console.log(Object.getPrototypeOf(Dog))// 不含 name 属性
+console.log(Dog.prototype); // 不含 name 属性
+console.log(Object.getPrototypeOf(Dog)); // 不含 name 属性
 // const dog = new Dog('小白')//创建实例，会调用构造函数，构造函数默认是 public 成员，把构造函数生成成受保存成员，该类不能创建实例，只能做基类
 // console.log(dog)// 内部属性只在实例上，不在原型上
 // console.log(dog.city)//实例无法访问静态成员
@@ -48,17 +48,17 @@ class Husky extends Dog {
     this.color = color
   }
 }
-const husky = new Husky('wangwnag', 'black')
-console.log(Husky.city)// 静态成员被继承
-console.log(husky)
-console.log(husky.color)
-console.log(husky.name)
+const husky = new Husky('wangwnag', 'black');
+console.log(Husky.city); // 静态成员被继承
+console.log(husky);
+console.log(husky.color);
+console.log(husky.name);
 // console.log(husky.id)// 子类实例无法访问父类的私有属性
 // console.log(husky.age) // 子类访问不到父类的受保护成员
-console.log(Object.getPrototypeOf(husky))// Dog 类
-console.log(Object.getPrototypeOf(Husky))// Dog 构造函数
-console.log(Husky.prototype)// Dog 类
-console.log(Object.getPrototypeOf(husky))// Dog 类
+console.log(Object.getPrototypeOf(husky)); // Dog 类
+console.log(Object.getPrototypeOf(Husky)); // Dog 构造函数
+console.log(Husky.prototype); // Dog 类
+console.log(Object.getPrototypeOf(husky)); // Dog 类
 
 // 成员修饰符
 // public 共有成员，默认修饰符，类中可见，可继承，实例可见

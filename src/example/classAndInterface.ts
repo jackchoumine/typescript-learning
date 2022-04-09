@@ -2,8 +2,8 @@
  * @Description: 类与接口
  * @Date: 2020-05-14 22:39:18
  * @Author: JackChouMine
- * @LastEditTime: 2020-05-21 01:00:58
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2022-04-09 19:36:48 +0800
+ * @LastEditors : JackChou
  */
 
 // 接口把类成员都抽象了出来，只有类的接口而无实现

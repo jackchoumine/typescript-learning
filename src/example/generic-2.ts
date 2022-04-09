@@ -23,7 +23,7 @@
 // TODO 泛型约束：约束泛型的类型，比如我们希望参数都有一个 length 属性、某某方法
 
 interface Length {
-  length: number
+  length: number;
 }
 function hisLog<T extends { length: number }> (value: T): T {
   console.log(value, value.length)

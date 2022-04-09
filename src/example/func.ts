@@ -2,8 +2,8 @@
  * @Description: ts 函数学习
  * @Date: 2020-05-10 22:09:30
  * @Author: JackChouMine
- * @LastEditTime: 2020-12-06 20:35:13 +0800
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2022-04-09 19:36:39 +0800
+ * @LastEditors : JackChou
  */
 // 定义了一个函数并使用内联方式对参数进行了注解
 function addTest (n1: number, n2: number): number {
