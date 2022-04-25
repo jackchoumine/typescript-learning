@@ -2,7 +2,7 @@
  * @Description: 应用入口
  * @Date: 2019-12-02 02:12:29
  * @Author: JackChouMine
- * @LastEditTime: 2022-04-10 05:29:19 +0800
+ * @LastEditTime: 2022-04-25 21:06:07 +0800
  * @LastEditors : JackChou
  */
 import './example/basic-type'
@@ -151,4 +151,37 @@ function getAuthors(db: PostgresDB): Author[] {
 
 interface PostgresDB {
   runQuery(query: string): string[][]
+}
+
+function logMessage(message: string | null) {
+  if (message) console.log(message)
+}
+
+const bigObject = {
+  /** number[] */
+  x: [1, 2, 3], // number[]
+  /** bar 属性 */
+  bar: {
+    name: 'tomato',
+  },
+}
+
+type BarType = typeof bigObject['bar']
+
+function restOfPath(path: string): string {
+  return path.split('/').slice(1).join(path)
+}
+/**
+ * 获取 DOM 元素
+ * @param elOrId
+ * @returns HTMLElement
+ */
+function getElement(elOrId: string | HTMLElement | null): HTMLElement {
+  if (elOrId === null) {
+    return document.body
+  } else if (typeof elOrId === 'object') {
+    return elOrId
+  } else {
+    return document.getElementById(elOrId)!
+  }
 }
