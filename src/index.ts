@@ -2,7 +2,7 @@
  * @Description: 应用入口
  * @Date: 2019-12-02 02:12:29
  * @Author: JackChouMine
- * @LastEditTime: 2022-04-25 22:33:45 +0800
+ * @LastEditTime: 2022-04-25 22:50:13 +0800
  * @LastEditors : JackChou
  */
 import './example/basic-type'
@@ -198,11 +198,6 @@ interface Person {
   age: number
 }
 
-// interface LifeSpan {
-//   birth: Date
-//   death?: Date
-// }
-// type PersonSpan = Person & LifeSpan
 interface PersonSpan extends Person {
   birth: Date
   death?: Date
@@ -219,5 +214,7 @@ const person: Person = {
   age: 18,
   birth: new Date(),
 } as PersonSpan
+
+const name: Person['name'] = personSpan['name']
 
 function getKey<K extends string>(val: any, key: K) {}

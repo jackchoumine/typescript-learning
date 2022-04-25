@@ -292,3 +292,55 @@ const tuple: [number, number] = list //❌ 目标仅允许 2 个元素，但源�
 易错点：
 
 对象类型，`A&B`的值具有 A 和 B 的属性。
+
+## 如何区分类型空间和值空间
+
+TS 中一个`符号`，要么属于类型空间，要么属于值空间。
+
+属于类型空间的情况：
+
+```bash
+type a
+interface b
+const a:type = 1 # : 类型声明符号后的符号
+as type # type 是类型空间
+```
+
+`=` 后面的符合属于值空间。 `class` 和 `enum`同时引入了类型间和值空间。
+
+相同的符合在类型和值的上下文中，具有不同的含义。
+
+类型中，`typeof`接收一个值，返回值的类型。值上下文中，返回类型的字符串
+：`string`、`number`、`boolean`、`undefined`、`object`、`function`、`symbol`和`bigint`。
+
+```ts
+const v = typeof Math.sin // function
+type f = typeof Math.sin // 类型
+```
+
+`[]`和`.`在值空间等价的，在类型空间中却不是。
+
+```ts
+interface Person {
+  // 描述成员特征
+  name: string
+  age: number
+}
+
+const person: Person = {
+  name: 'tom',
+  age: 18,
+}
+
+// Person['name'] 是类型
+const name: Person['name'] = person['name'] // person['name'] 是值
+```
+
+> 如果 ts 无法理解你的代码，可能是值空间和类型空间弄反了。
+
+其他结构在两种空间中具有不同的含义：
+
+- in 值空间：属性循环，类型空间：映射类型。
+- const `as const` 属性类型空间。
+- `|`、`&`，值空间：位上的`OR`、`AND`，类型空间是并集和交集。
+- this，值空间，当前对象，类型空间：对多 this。
