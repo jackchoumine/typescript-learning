@@ -2,7 +2,7 @@
  * @Description: 应用入口
  * @Date: 2019-12-02 02:12:29
  * @Author: JackChouMine
- * @LastEditTime: 2022-04-25 21:06:07 +0800
+ * @LastEditTime: 2022-04-25 22:33:45 +0800
  * @LastEditors : JackChou
  */
 import './example/basic-type'
@@ -185,3 +185,39 @@ function getElement(elOrId: string | HTMLElement | null): HTMLElement {
     return document.getElementById(elOrId)!
   }
 }
+
+type Twelve = 12
+type AB12 = 'A' | 'B' | Twelve
+
+const a: AB12 = `A`
+const c: AB12 = 12 // 不能将类型“"c"”分配给类型“AB12”
+
+interface Person {
+  // 描述成员特征
+  name: string
+  age: number
+}
+
+// interface LifeSpan {
+//   birth: Date
+//   death?: Date
+// }
+// type PersonSpan = Person & LifeSpan
+interface PersonSpan extends Person {
+  birth: Date
+  death?: Date
+}
+
+const personSpan: PersonSpan = {
+  name: 'tom',
+  age: 18,
+  birth: new Date(),
+}
+
+const person: Person = {
+  name: 'tom',
+  age: 18,
+  birth: new Date(),
+} as PersonSpan
+
+function getKey<K extends string>(val: any, key: K) {}
