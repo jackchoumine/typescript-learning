@@ -344,3 +344,166 @@ const name: Person['name'] = person['name'] // person['name'] 是值
 - const `as const` 属性类型空间。
 - `|`、`&`，值空间：位上的`OR`、`AND`，类型空间是并集和交集。
 - this，值空间，当前对象，类型空间：对多 this。
+
+## 优先使用类型声明而不是类型断言
+
+### 类型声明 vs 类型断言
+
+```ts
+interface Person {
+  name: string
+}
+const p: Person = { name: 'jack' } // 类型声明
+const t = { name: 'jack' } as Person // 类型断言
+```
+
+作用相似：指定变量的类型，但是作用完全不同。
+
+类型声明确保值符合类型，类型断言告诉编译器你更了解类型，并希望 t 的类型是 Person。
+
+类型断言可能不会按照你的期望工作，换言之，类型断言无法保证类型正确。
+
+```ts
+const alice: Person = {} // ❌ 缺少 name 属性
+const bob = {} as Person // ✅ 编译器不提示错误，但是实际上不对
+```
+
+> 使用类型声明，除非有特别的理由使用类型断言。
+
+### 箭头函数的类型
+
+```ts
+const people = ['jack', 'fred'].map((name) => ({ name })) // people 的类型 {name:string}[]
+// 但是期望是 Person[]
+```
+
+解决方案：
+
+1. 使用类型断言
+
+```ts
+const people = ['jack', 'fred'].map((name) => ({ name } as Person))
+```
+
+2. 在箭头函数内部使用类型
+
+```ts
+const people = ['jack', 'fred'].map((name) => {
+  const person: Person = { name }
+  return person
+})
+```
+
+但是太繁琐。
+
+3. 简洁的类型声明
+
+```ts
+const people = ['jack', 'fred'].map((name): Person => ({ name }))
+```
+
+> 在函数调用比较长的地方，希望尽早出现命名类型，这有助于尽早发现错误。
+
+> 何时使用类型断言？
+
+当类型检查器无法从上下文中获得类型信息时，使用类型断言，常见的情况：DOM 元素、接口返回的数据。
+
+```ts
+document.querySelector('#button').addEventListener('click', (e) => {
+  // e.currentTarget EventTarget
+  const button = e.currentTarget as HTMLButtonElement
+})
+```
+
+> 非空断言 `!`，`!`在变量的后面，是非空断言。优先使用 null 检查，而不是非空断言。
+
+> 类型断言的局限 -- 无法让任意类型相关转化。
+
+```ts
+const body = document.body
+const el = body as Person // ❌ 报错
+const el = body as unknown as Person
+```
+
+> 所有类型都是 unknown 的子类型。
+
+## 避免使用包装类
+
+ts 为基本类型提供了对象包装器的类型，来区别包装类和基本数据类型的区别。
+
+> string 可赋值给 String，但是 String 无法赋值给 string。
+
+## 额外属性检查而局限
+
+```ts
+const tom: Person = { name: 'Tom', age: 20 } // 字面量对象赋值时，会触发额外属性检查，不能多出属性
+const person = { name: 'Tom', age: 20 }
+const tom2: Person = person // 引入中间变量，消除错误
+```
+
+> ts 试图找出运行时可能报错的代码，还试图找到不按照开发者意图运行的代码。
+
+额外属性检查通过检查字面量的未知属性类防止类型扩张。
+
+额外属性检查发生在`所有属性都是可选`的类型上，提取中间变量无法跳出检查。ts 对这种情况，加强了检查，确保值类型和声明类型
+至少有一个属性相同。
+
+```ts
+interface LineOptions {
+  logscale?: boolean
+  areaChart?: boolean
+}
+
+const opts = { logScale: true }
+const o: LineOptions = opts //❌ 类型“{ logScale: boolean; }”与类型“LineOptions”不具有相同的属性。
+```
+
+把对象字面量赋值给变量或者对象字面量作为参数传递给函数时，触发额外属性检查。
+
+额外属性检查对捕获错别字，很有用，但是提取中间变量可跳出这种检查。
+
+## 给整个函数表达式应用类型
+
+> 好处：可复用类型，减少冗余。
+
+看一个函数：
+
+```ts
+// getQuote 的类型是 Promise<Response>
+async function getQuote() {
+  const res = await fetch('/api/quote')
+  return res
+}
+```
+
+但是请求失败时，需要额外处理。
+
+编写一个检查函数
+
+```ts
+async function checkFetch(input: RequestInfo, init?: RequestInit) {
+  const res = await fetch(init, init)
+  if (!res.ok) {
+    throw new Error(`${res.status} ${res.statusText}`)
+  }
+  return res
+}
+```
+
+ok，👌
+
+更好的方案：使用 fetch 的类型用于 checkFetch
+
+```ts
+const checkFetch: typeof fetch = async (input, init) => {
+  const res = await fetch(input, init)
+  if (!res.ok) {
+    throw new Error(`${res.status} ${res.statusText}`)
+  }
+  return res
+}
+```
+
+> 这能让 ts 检查 input 和 init，代码更简洁。
+
+> 缺点：可读性有所降低。

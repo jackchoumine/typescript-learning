@@ -2,7 +2,7 @@
  * @Description: 应用入口
  * @Date: 2019-12-02 02:12:29
  * @Author: JackChouMine
- * @LastEditTime: 2022-04-25 22:50:13 +0800
+ * @LastEditTime: 2022-04-26 01:22:36 +0800
  * @LastEditors : JackChou
  */
 import './example/basic-type'
@@ -218,3 +218,19 @@ const person: Person = {
 const name: Person['name'] = personSpan['name']
 
 function getKey<K extends string>(val: any, key: K) {}
+// getQuote 的类型是 Promise<Response>
+async function getQuote() {
+  const res = await fetch('/api/quote')
+  // const quote = await res.json()
+  return res
+}
+
+// 但是，请求失败时，返回的类型是 Promise<never>
+
+const checkFetch: typeof fetch = async (input, init) => {
+  const res = await fetch(input, init)
+  if (!res.ok) {
+    throw new Error(`${res.status} ${res.statusText}`)
+  }
+  return res
+}
