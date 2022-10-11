@@ -2,7 +2,7 @@
  * @Description: 应用入口
  * @Date: 2019-12-02 02:12:29
  * @Author: JackChouMine
- * @LastEditTime: 2022-04-26 01:22:36 +0800
+ * @LastEditTime: 2022-07-20 14:29:29 +0800
  * @LastEditors : JackChou
  */
 import './example/basic-type'
@@ -47,7 +47,8 @@ function formatNameAny(p: any) {
 console.log(formatNameAny(teacher))
 
 const el = document.querySelector('#app')
-el!.innerHTML = `<div>hello</div>`
+
+el && (el!.innerHTML = `<div>hello</div>`)
 
 class Square {
   constructor(public width: number) {}
@@ -146,7 +147,7 @@ interface Author {
 
 function getAuthors(db: PostgresDB): Author[] {
   const authorRows = db.runQuery(`SELECT first,last FROM AUTHOR`)
-  return authorRows.map((row) => ({ first: row[0], last: row[1] }))
+  return authorRows.map(row => ({ first: row[0], last: row[1] }))
 }
 
 interface PostgresDB {
@@ -190,7 +191,7 @@ type Twelve = 12
 type AB12 = 'A' | 'B' | Twelve
 
 const a: AB12 = `A`
-const c: AB12 = 12 // 不能将类型“"c"”分配给类型“AB12”
+const cc: AB12 = 12 // 不能将类型“"c"”分配给类型“AB12”
 
 interface Person {
   // 描述成员特征

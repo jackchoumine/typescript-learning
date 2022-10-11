@@ -1,6 +1,8 @@
-# 高效使用 ts
+# 高效使用 TS ---- 第一章笔记
 
-## 了解 类型
+## 了解类型
+
+类型是值的约束，让人和程序更好的理解代码，对提前了解程序潜在的 bug 有很大帮助。
 
 ### ts 和 js 的关系
 
@@ -91,8 +93,8 @@ interface Rectangle extends Square {
 
 type Shape = Square | Rectangle
 function calculateArea(shape: Shape) {
-  // NOTE 这是js 语法，转译时不被清除
-  // ❌ . 语法不行
+  // NOTE 这是 js 语法，转译时不被清除
+  // ❌ . 语法检查属性存在性不安全
   if ('height' in shape) {
     return shape.width * shape.height
   } else {
@@ -164,32 +166,31 @@ function calculateArea(shape: Shape) {
 
 转译后：
 
-```JS
+```js
 var Square = /** @class */ (function () {
-    function Square(width) {
-        this.width = width;
-    }
-    return Square;
-}());
+  function Square(width) {
+    this.width = width
+  }
+  return Square
+})()
 var Rectangle = /** @class */ (function (_super) {
-    __extends(Rectangle, _super);
-    function Rectangle(width, height) {
-        var _this = _super.call(this, width) || this;
-        _this.width = width;
-        _this.height = height;
-        return _this;
-    }
-    return Rectangle;
-}(Square));
+  __extends(Rectangle, _super)
+  function Rectangle(width, height) {
+    var _this = _super.call(this, width) || this
+    _this.width = width
+    _this.height = height
+    return _this
+  }
+  return Rectangle
+})(Square)
 
 function calculateArea(shape) {
   // NOTE Rectangle 是变量，是值
-    if (shape instanceof Rectangle) {
-        return shape.width * shape.height;
-    }
-    else {
-        return shape.width * shape.width;
-    }
+  if (shape instanceof Rectangle) {
+    return shape.width * shape.height
+  } else {
+    return shape.width * shape.width
+  }
 }
 ```
 
@@ -341,9 +342,11 @@ el!.innerHTML = `<div>hello</div>` // 运行时可能报错 Uncaught TypeError: 
 
 ### 应该限制使用 any
 
-TS 的类型系统是渐近和可选的：渐进：可将类型一项一项得的加入代码中，可选：可随时禁用类型检查器。
+TS 的类型系统是渐近和可选的：
 
-这些功能的关键是`any`类型。
+渐进：可将类型一项一项地加入代码中，可选：可随时禁用类型检查器。
+
+渐进和可选的的关键是`any`类型。
 
 ```js
 let age: number
@@ -362,7 +365,7 @@ any 的优点：不理解类型错误、认为编译器推断错误、**不想�
 function plus10(amount: number) {
   return amount + 10
 }
-plus10(10) //计算正确
+plus10(10) // 计算正确
 // 重构引入 any
 function plus10(amount: any) {
   return amount + 10
@@ -380,9 +383,9 @@ plus10('10') // 传入字符串，计算错误
 
 ts 的语言服务提高了生产力，是其核心功能，使用 any 将丢失这部分功能。
 
-3. any 隐蔽了类型设计，给阅读和交流带来不变。
+3. any 隐蔽了类型设计，给阅读和交流带来不便。
 
-这很好理解，js 正因为无类型提示，面对多人合作、代码量大时，会难以阅读，不容易推断代码逻辑，在代码审查时不变。
+这很好理解，js 正因为无类型提示，在多人合作、代码量大时，会难以阅读，不容易推断代码逻辑，在代码审查时不便。
 
 > 如何避免使用 any？
 
@@ -528,7 +531,7 @@ interface Author {
 
 function getAuthors(db: PostgresDB): Author[] {
   const authorRows = db.runQuery(`SELECT first,last FROM AUTHOR`)
-  return authorRows.map((row) => ({ first: row[0], last: row[1] }))
+  return authorRows.map(row => ({ first: row[0], last: row[1] }))
 }
 ```
 
@@ -550,4 +553,4 @@ test('getAuthors', () => {
 })
 ```
 
-> 结构类型的另一个优点：干净的切断了库之前的类型依赖。
+> 结构类型的另一个优点：干净地切断了库之间的类型依赖。
